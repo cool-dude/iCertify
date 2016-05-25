@@ -1,6 +1,7 @@
 # iCertify
-[[https://github.com/piyusgupta/iCertify/blob/master/data/logo.jpg|alt=iCertify]]
 You can distribute eCertificates for any good deed to massive people
+
+![iCertify](https://github.com/piyusgupta/iCertify/blob/master/data/logo.jpg)
 
 Product is ready for all the linux environment to use
 
