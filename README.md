@@ -43,6 +43,11 @@ pop_forwarding = smtp.gmail.com
 
 ```
 The product can be used by commandline after successfull installation
+>USAGE : to generate new certificate and send email
 ```
-USAGE : python certify <email_id> <full_name_with_space>
+python certify <email_id> <full_name_with_space>
+```
+> ADMIN USAGE : to get the statistics for certificate generation
+```
+python certify --admin
 ```

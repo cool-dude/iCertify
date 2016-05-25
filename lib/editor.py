@@ -1,7 +1,7 @@
 import csv
 import os
 
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from PIL import Image
 from PIL import ImageFont
@@ -40,3 +40,20 @@ def logit(parameters):
         writer.writerow(row_data)
 
 create_dir_if_not_exists = lambda path: os.makedirs(os.path.dirname(path)) if not os.path.exists(os.path.dirname(path)) else 1
+
+
+def get_statistics():
+    list_date_time = []
+    file_path = os.path.join(APP_DIR, config.get('app-settings', 'attachments'), 'reports.csv')
+    if not os.path.exists(file_path):
+        print "It seems no certificates generated yet, try sometimes later."
+    with open(file_path, 'rb') as csvfile:
+        reader = csv.reader(csvfile, delimiter=',', quotechar='|')
+        header = reader.next()
+        for line in reader:
+            list_date_time.append(datetime.strptime(line[2], "%Y-%m-%d %X.%f"))
+    print "\nHey I am printing the statistics...\n", "=-=" * 16
+    _now = datetime.now()
+    print "Last Hour\t Count\t:%d" % (len(filter(lambda d: 1 if d > (_now - timedelta(seconds=60 * 60)) else 0, list_date_time)))
+    print "Last Day \t Count\t:%d" % (len(filter(lambda d: 1 if d > (_now - timedelta(days=1)) else 0, list_date_time)))
+    print "Last Week\t Count\t:%d" % (len(filter(lambda d: 1 if d > (_now - timedelta(days=7)) else 0, list_date_time)))
