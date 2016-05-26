@@ -51,3 +51,5 @@ python certify <email_id> <full_name_with_space>
 ```
 python certify --admin
 ```
+For setting up the gmail smtp to work for apps after 2 step verification added by google, please visit
+http://email.about.com/od/gmailtips/fl/How-to-Get-a-Password-to-Access-Gmail-By-POP-or-IMAP.htm

@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 import smtplib
 import mimetypes
 import threading
@@ -18,7 +19,7 @@ from lib.config import config
 
 class EmailSender:
     email = config.get('email-sender', 'email')
-    passowrd = config.get('email-sender', 'password')
+    password = config.get('email-sender', 'password')
     port = config.get('email-sender', 'port')
     pop_forwarding = config.get('email-sender', 'pop_forwarding')
 
@@ -71,11 +72,14 @@ class SMTPEmailer():
             mailserver.login(self.sender.email, self.sender.password)
             mailserver.sendmail(self.sender.email, recepients, msg.as_string())
             mailserver.quit()
-            sys.stdout.write("Email sent to : %s" % (recepients))
+            sys.stdout.write("Please check, Email sent to %s\n" % (recepients))
 
+        """
         email_thread = threading.Thread(target=_send_email_thread, )
         email_thread.setDaemon(True)
         email_thread.start()
+        """
+        _send_email_thread()
 
 
 def send_email(recepient, subject, message, attachments, parameters):
@@ -85,7 +89,6 @@ def send_email(recepient, subject, message, attachments, parameters):
     try:
         mail = SMTPEmailer(recepient, subject, message, attachments)
         mail.send()
-        sys.stdout.write("Please check, Email sent to %s\n" % (recepient))
     except Exception as e:
         print >> sys.stderr, e
         print >> sys.stderr, tb.format_exc()

@@ -4,4 +4,6 @@
 *.pyc
 *.swp
 *.swo
+*data/config.cfg
+*attachments/*
 .ropeproject

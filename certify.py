@@ -19,7 +19,7 @@ def main():
         print "ADMIN USAGE : python certify --admin"
         return
     print "\nPlease wait, sending mail to %(email)s for %(name)s certificate..." % (parameters)
-    heading = 'Thank you for participate to make this world a better living place'
+    heading = config.get('email-sender', 'subject')
     attachments = [write_text_to_image(parameters['name'])]
     send_email(parameters.get('email'), heading, open('data/emailer.html').read(), attachments, parameters)
     parameters['attachment'] = attachments[0]
