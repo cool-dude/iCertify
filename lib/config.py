@@ -38,8 +38,8 @@ def write_sample_config():
 
 def read_app_config(config_file=os.path.join(APP_DIR, DEFAULT_CONFIG_NAME)):
     if not os.path.exists(config_file):
+        write_sample_config()
         sys.stdout.write("Writing a new config since the app doesn't find anyone existing\n")
-    write_sample_config()
     config = ConfigParser.RawConfigParser()
     config.read(config_file)
     return config
